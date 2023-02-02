@@ -1,30 +1,32 @@
-const List<Map<String, dynamic>> profiles = [
-  {
-    'id': 1,
-    'name': 'John Doe',
-    'userName': '@johnDoe',
-    'profileImage':
-        'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg'
-  },
-  {
-    'id': 1,
-    'name': 'John Doe',
-    'userName': '@johnDoe',
-    'profileImage':
-        'https://img.freepik.com/free-photo/classic-portrait-silhouette-man_23-2149707006.jpg?size=626&ext=jpg'
-  },
-  {
-    'id': 1,
-    'name': 'John Doe',
-    'userName': '@johnDoe',
-    'profileImage':
-        'https://img.freepik.com/free-photo/young-man-with-charming-smile-blue-eyes-posing_176420-15602.jpg?size=626&ext=jpg'
-  },
-  {
-    'id': 1,
-    'name': 'John Doe',
-    'userName': '@johnDoe',
-    'profileImage':
-        'https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg'
+class Profile {
+  int id;
+  String name;
+  String userName;
+  String profileImage;
+
+  Profile(
+      {required this.id,
+      required this.name,
+      required this.userName,
+      required this.profileImage});
+
+  factory Profile.fromJson(Map<String, dynamic> json) {
+    return Profile(
+      id: json['id'],
+      name: json.containsKey('name') ? json['name'] : '',
+      userName: json.containsKey('userName') ? json['userName'] : '',
+      profileImage: json['profileImage'],
+    );
   }
-];
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> json = {};
+
+    json['id'] = id;
+    json['name'] = name;
+    json['userName'] = userName;
+    json['profieImage'] = profileImage;
+
+    return json;
+  }
+}
